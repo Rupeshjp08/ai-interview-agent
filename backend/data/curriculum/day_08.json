@@ -1,0 +1,24 @@
+{
+  "day": 8,
+  "title": "Memory & State Management",
+  "topics": ["Conversation memory", "Buffer memory", "Summary memory", "Vector memory", "Entity memory"],
+  "key_concepts": [
+    "Short-term vs long-term memory in AI systems",
+    "ConversationBufferMemory: full history in context",
+    "ConversationSummaryMemory: compressed history via LLM",
+    "Vector store memory: semantic retrieval of past interactions",
+    "Entity extraction and knowledge graph memory"
+  ],
+  "expected_skills": [
+    "Implement and compare different memory types in LangChain",
+    "Design a memory strategy for a long-running conversational agent",
+    "Use vector memory to retrieve relevant past interactions",
+    "Manage token limits with memory summarization"
+  ],
+  "sample_questions": [
+    "What is the trade-off between ConversationBufferMemory and ConversationSummaryMemory?",
+    "How would you design a memory system for an agent that needs to remember user preferences over months?",
+    "When would you use vector store memory over buffer memory for a chatbot?",
+    "How do you prevent memory from consuming the entire context window in a long conversation?"
+  ]
+}

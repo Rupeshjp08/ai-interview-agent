@@ -1,0 +1,24 @@
+{
+  "day": 10,
+  "title": "LangChain & Chains",
+  "topics": ["LangChain architecture", "LCEL (LangChain Expression Language)", "Sequential chains", "Output parsers", "Memory in chains"],
+  "key_concepts": [
+    "The Runnable interface and pipe operator",
+    "PromptTemplate, LLM, and OutputParser chain",
+    "Sequential vs parallel chain execution",
+    "Structured output parsing with Pydantic",
+    "ConversationBufferMemory vs ConversationSummaryMemory"
+  ],
+  "expected_skills": [
+    "Build a simple chain using LCEL pipe syntax",
+    "Parse structured JSON output from an LLM",
+    "Add conversation memory to a chain",
+    "Debug a LangChain trace using LangSmith"
+  ],
+  "sample_questions": [
+    "Walk me through how you would build a simple Q&A chain using LangChain Expression Language.",
+    "What is the difference between ConversationBufferMemory and ConversationSummaryMemory? When would you use each?",
+    "How do you get an LLM to reliably return structured JSON using LangChain output parsers?",
+    "What is LangSmith and how does it help in debugging LangChain applications?"
+  ]
+}

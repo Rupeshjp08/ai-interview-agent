@@ -1,0 +1,24 @@
+{
+  "day": 26,
+  "title": "Agentic Code Generation",
+  "topics": ["Code agents", "Code execution", "Code review", "Test generation", "GitHub integration"],
+  "key_concepts": [
+    "Code interpreters: executing LLM-generated code in sandboxes",
+    "OpenAI Code Interpreter / Assistants API for code execution",
+    "Security considerations when executing LLM-generated code",
+    "LLM-driven test generation and code review",
+    "GitHub Copilot architecture and code completion internals"
+  ],
+  "expected_skills": [
+    "Build an agent that generates and executes Python code",
+    "Sandbox LLM-generated code execution safely",
+    "Use LLMs to generate unit tests for existing code",
+    "Implement a code review agent with structured feedback"
+  ],
+  "sample_questions": [
+    "What security risks arise when allowing an LLM agent to execute generated code, and how do you mitigate them?",
+    "How would you build a sandboxed code execution environment for an AI coding assistant?",
+    "How can LLMs be used to generate meaningful unit tests for existing Python code?",
+    "What is the OpenAI Assistants API Code Interpreter and how does it differ from running code locally?"
+  ]
+}

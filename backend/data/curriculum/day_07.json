@@ -1,0 +1,24 @@
+{
+  "day": 7,
+  "title": "Agents & Tool Use",
+  "topics": ["AI agents", "ReAct pattern", "Tool calling", "Function calling", "Agent loops"],
+  "key_concepts": [
+    "The ReAct (Reason + Act) agent loop: thought → action → observation",
+    "OpenAI function calling vs Gemini tool use",
+    "Tool definitions: name, description, JSON schema parameters",
+    "Agent stopping conditions and max iteration limits",
+    "Multi-tool agents and tool selection strategies"
+  ],
+  "expected_skills": [
+    "Build a ReAct agent with custom tools using LangChain",
+    "Define function/tool schemas for LLM tool calling",
+    "Handle tool errors and edge cases gracefully",
+    "Debug agent reasoning traces with LangSmith"
+  ],
+  "sample_questions": [
+    "Explain the ReAct pattern and how it enables AI agents to reason and act.",
+    "How do you define a tool for an LLM to use via function calling? What makes a good tool description?",
+    "What stopping conditions would you implement for a ReAct agent to prevent infinite loops?",
+    "How would you handle a scenario where an agent calls a tool that returns an error?"
+  ]
+}

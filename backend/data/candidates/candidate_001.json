@@ -1,0 +1,35 @@
+{
+  "candidate_id": "candidate_001",
+  "name": "Arjun Sharma",
+  "email": "arjun.sharma@example.com",
+  "cohort": "AI Engineering Cohort — Batch 3",
+  "days_completed": 31,
+  "strengths": [
+    "Python fundamentals",
+    "Prompt engineering",
+    "LangChain basics",
+    "RAG pipeline design",
+    "FastAPI REST APIs"
+  ],
+  "weak_areas": [
+    "Fine-tuning techniques",
+    "Vector database internals",
+    "MLOps deployment pipelines",
+    "Attention mechanism math"
+  ],
+  "learning_notes": "Arjun consistently engages with hands-on labs. He struggles with the mathematical intuition behind transformers but compensates with strong practical implementation skills. He has shipped two end-to-end projects: a document Q&A bot and a customer support agent.",
+  "projects": [
+    {
+      "name": "Document Q&A Bot",
+      "description": "RAG pipeline using LangChain + Chroma + OpenAI",
+      "day_completed": 18
+    },
+    {
+      "name": "Customer Support Agent",
+      "description": "Multi-turn conversational agent with memory using LangGraph",
+      "day_completed": 28
+    }
+  ],
+  "preferred_language": "Python",
+  "interview_difficulty": "intermediate"
+}

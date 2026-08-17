@@ -1,0 +1,24 @@
+{
+  "day": 5,
+  "title": "Prompt Engineering Deep Dive",
+  "topics": ["Zero-shot prompting", "Few-shot prompting", "Chain-of-thought", "System prompts", "Prompt injection attacks"],
+  "key_concepts": [
+    "Zero-shot vs few-shot vs fine-tuning trade-offs",
+    "Constructing effective system prompts",
+    "Chain-of-thought reasoning (step-by-step)",
+    "Prompt injection vulnerabilities",
+    "Role prompting and persona techniques"
+  ],
+  "expected_skills": [
+    "Write zero-shot, one-shot, and few-shot prompts",
+    "Apply chain-of-thought for complex reasoning tasks",
+    "Identify and mitigate prompt injection risks",
+    "Craft a production-quality system prompt"
+  ],
+  "sample_questions": [
+    "What is the difference between zero-shot and few-shot prompting, and when would you choose each?",
+    "Explain chain-of-thought prompting with an example.",
+    "What is prompt injection and how would you defend against it in a production system?",
+    "How do you structure a system prompt to make an LLM behave reliably as a specialized assistant?"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "day": 28,
+  "title": "Advanced LangGraph & Agent Patterns",
+  "topics": ["LangGraph persistence", "Checkpointing", "Time travel", "Supervisor agent", "Parallel branching"],
+  "key_concepts": [
+    "LangGraph persistence with SQLite/Redis checkpointers",
+    "Time travel: rewinding graph state to a previous checkpoint",
+    "Supervisor agent pattern: LLM-driven dynamic routing",
+    "Parallel node execution: running branches simultaneously",
+    "Sub-graphs: composing multiple LangGraph graphs"
+  ],
+  "expected_skills": [
+    "Add persistence to a LangGraph agent with a checkpointer",
+    "Implement time travel to rewind and replay agent decisions",
+    "Build a supervisor agent that dynamically routes to specialist sub-agents",
+    "Execute parallel branches in a LangGraph workflow"
+  ],
+  "sample_questions": [
+    "How does LangGraph's checkpointing system enable persistence across agent runs?",
+    "What is time travel in LangGraph and when would you use it in a production system?",
+    "Explain the supervisor agent pattern and how it differs from a static orchestrator.",
+    "How would you implement parallel tool calls in a LangGraph agent to speed up execution?"
+  ]
+}

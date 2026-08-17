@@ -1,0 +1,24 @@
+{
+  "day": 29,
+  "title": "AI System Design",
+  "topics": ["System design", "Latency optimization", "Cost optimization", "Caching", "Load balancing"],
+  "key_concepts": [
+    "AI system design interview framework: requirements → high-level design → deep dive",
+    "Latency optimization: caching, batching, streaming, model selection",
+    "Cost optimisation: prompt compression, smaller models, caching strategies",
+    "Semantic caching: serving cached results for semantically similar queries",
+    "Load balancing across multiple LLM provider keys / regions"
+  ],
+  "expected_skills": [
+    "Design a scalable AI feature end-to-end in a system design interview",
+    "Implement semantic caching to reduce LLM API costs",
+    "Apply prompt compression to reduce token usage",
+    "Design fallback chains across multiple AI providers"
+  ],
+  "sample_questions": [
+    "Design a production AI-powered search system that handles 1 million queries per day.",
+    "How would you implement semantic caching to reduce LLM API costs by 50%?",
+    "How do you handle LLM provider outages? Design a fallback strategy.",
+    "What techniques would you use to reduce the p99 latency of an LLM-powered API to under 2 seconds?"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "day": 25,
+  "title": "Evaluation, Observability & MLOps",
+  "topics": ["LLM evaluation frameworks", "LangSmith tracing", "RAGAS", "Prompt versioning", "CI/CD for AI apps"],
+  "key_concepts": [
+    "LLM-as-judge evaluation",
+    "Faithfulness, relevancy, context precision metrics (RAGAS)",
+    "Tracing and logging with LangSmith / Arize",
+    "Prompt registry and version control",
+    "Canary deployments for LLM updates"
+  ],
+  "expected_skills": [
+    "Set up LangSmith tracing in a LangChain app",
+    "Run a RAGAS evaluation on a RAG pipeline",
+    "Design an A/B test for two prompt variants",
+    "Build a CI pipeline that evaluates LLM output quality"
+  ],
+  "sample_questions": [
+    "How would you evaluate whether one prompt performs better than another in production?",
+    "What is RAGAS and what metrics does it provide for RAG evaluation?",
+    "Explain the concept of LLM-as-judge evaluation. What are its limitations?",
+    "How would you implement continuous monitoring for an LLM application in production?"
+  ]
+}

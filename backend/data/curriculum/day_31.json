@@ -1,0 +1,24 @@
+{
+  "day": 31,
+  "title": "Capstone: Production-Ready AI Systems",
+  "topics": ["System design for AI apps", "Scalability patterns", "Security & safety", "Cost optimization", "Deployment best practices"],
+  "key_concepts": [
+    "Async vs sync LLM calls at scale",
+    "Caching strategies: semantic caching, exact-match caching",
+    "Guardrails and content moderation",
+    "Token budget management",
+    "Containerization and cloud deployment of AI apps"
+  ],
+  "expected_skills": [
+    "Design a scalable, production AI system architecture",
+    "Implement semantic caching to reduce API costs",
+    "Add guardrails using Guardrails AI or NeMo Guardrails",
+    "Deploy a FastAPI + LangChain app on cloud infrastructure"
+  ],
+  "sample_questions": [
+    "Walk me through how you would design a production-ready AI customer support system for 10,000 concurrent users.",
+    "How would you implement caching to reduce LLM API costs by 60%?",
+    "What are guardrails in AI systems and how would you implement them?",
+    "How would you handle a situation where your LLM API provider has an outage — what's your fallback strategy?"
+  ]
+}

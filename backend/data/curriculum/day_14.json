@@ -1,0 +1,24 @@
+{
+  "day": 14,
+  "title": "Multi-Agent Systems",
+  "topics": ["Multi-agent architectures", "Agent communication", "Orchestrator-worker pattern", "AutoGen", "CrewAI"],
+  "key_concepts": [
+    "Orchestrator agent vs specialist worker agents",
+    "Agent communication: shared state vs message passing",
+    "Debate agents: using disagreement to improve answers",
+    "Parallel vs sequential agent execution",
+    "Trust boundaries and sandboxing in multi-agent systems"
+  ],
+  "expected_skills": [
+    "Design a multi-agent workflow for a complex task",
+    "Implement an orchestrator that delegates to specialist agents",
+    "Handle agent failures and retries in a multi-agent system",
+    "Evaluate multi-agent performance vs single-agent approaches"
+  ],
+  "sample_questions": [
+    "What are the benefits and risks of using multiple agents instead of one powerful agent?",
+    "Explain the orchestrator-worker pattern in multi-agent systems. When would you use it?",
+    "How would you handle a situation where one agent in a pipeline fails?",
+    "What is the debate agent pattern and how does it improve final answer quality?"
+  ]
+}

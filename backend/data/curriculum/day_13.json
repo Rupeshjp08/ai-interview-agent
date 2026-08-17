@@ -1,0 +1,24 @@
+{
+  "day": 13,
+  "title": "Fine-Tuning LLMs",
+  "topics": ["LoRA", "QLoRA", "PEFT", "SFT", "Dataset preparation"],
+  "key_concepts": [
+    "Full fine-tuning vs parameter-efficient fine-tuning (PEFT)",
+    "LoRA: Low-Rank Adaptation — rank, alpha, target modules",
+    "QLoRA: quantised LoRA for memory efficiency",
+    "Supervised Fine-Tuning (SFT) data format: instruction-response pairs",
+    "When to fine-tune vs use RAG or few-shot prompting"
+  ],
+  "expected_skills": [
+    "Prepare a dataset for SFT in the correct format",
+    "Apply LoRA fine-tuning using HuggingFace PEFT",
+    "Choose appropriate LoRA rank and alpha hyperparameters",
+    "Evaluate a fine-tuned model against the base model"
+  ],
+  "sample_questions": [
+    "What is LoRA and how does it reduce the number of trainable parameters during fine-tuning?",
+    "When would you choose fine-tuning over RAG for improving model performance on a specific task?",
+    "What is QLoRA and why is it useful for fine-tuning large models on consumer hardware?",
+    "How would you prepare a dataset for supervised fine-tuning of a chat model?"
+  ]
+}

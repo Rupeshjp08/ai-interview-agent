@@ -1,0 +1,24 @@
+{
+  "day": 11,
+  "title": "Advanced RAG Techniques",
+  "topics": ["HyDE", "Re-ranking", "Multi-query retrieval", "Parent document retrieval", "Self-query"],
+  "key_concepts": [
+    "Hypothetical Document Embeddings (HyDE) for improved retrieval",
+    "Cross-encoder re-ranking vs bi-encoder retrieval",
+    "Multi-query retrieval: generating multiple query variants",
+    "Parent document retriever for better context",
+    "Self-querying retrievers with metadata filters"
+  ],
+  "expected_skills": [
+    "Implement HyDE retrieval pipeline",
+    "Use a cross-encoder to re-rank retrieved documents",
+    "Generate multiple query variants to improve recall",
+    "Build a self-querying retriever with structured metadata"
+  ],
+  "sample_questions": [
+    "How does HyDE improve retrieval quality compared to standard embedding search?",
+    "What is the difference between a bi-encoder and a cross-encoder, and when would you use each?",
+    "Explain how multi-query retrieval works and why it improves recall.",
+    "What is a self-querying retriever and when is it more useful than standard semantic search?"
+  ]
+}

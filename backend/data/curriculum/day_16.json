@@ -1,0 +1,24 @@
+{
+  "day": 16,
+  "title": "Streaming & Real-Time AI",
+  "topics": ["SSE streaming", "WebSockets", "Token streaming", "Async generators", "React streaming UI"],
+  "key_concepts": [
+    "Server-Sent Events (SSE) vs WebSockets for streaming",
+    "Streaming with LangChain's StreamingStdOutCallbackHandler",
+    "Async generators in Python for token-by-token streaming",
+    "FastAPI StreamingResponse for SSE",
+    "Frontend consumption of streamed tokens with React"
+  ],
+  "expected_skills": [
+    "Implement token streaming from an LLM via FastAPI SSE",
+    "Use Python async generators to stream LLM output",
+    "Build a React UI that renders tokens as they arrive",
+    "Handle streaming interruptions and reconnections"
+  ],
+  "sample_questions": [
+    "What is the difference between SSE and WebSockets? When would you use each for streaming LLM output?",
+    "How do you implement token streaming from a FastAPI endpoint?",
+    "Explain how Python async generators work and how they enable streaming LLM responses.",
+    "What user experience considerations are important when building a streaming chat interface?"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "day": 4,
+  "title": "RAG — Retrieval-Augmented Generation",
+  "topics": ["RAG architecture", "Document loading", "Chunking strategies", "Retrieval", "Context injection"],
+  "key_concepts": [
+    "The RAG pipeline: load → chunk → embed → store → retrieve → generate",
+    "Naive RAG vs advanced RAG (HyDE, re-ranking, multi-query)",
+    "Context window management and stuffing vs. map-reduce",
+    "Retrieval evaluation: precision, recall, MRR",
+    "Hallucination reduction with source grounding"
+  ],
+  "expected_skills": [
+    "Build an end-to-end RAG pipeline using LangChain + Chroma",
+    "Evaluate retrieval quality using standard metrics",
+    "Apply HyDE (Hypothetical Document Embeddings) to improve retrieval",
+    "Handle context overflow with map-reduce summarisation"
+  ],
+  "sample_questions": [
+    "Walk me through the steps of a basic RAG pipeline from document ingestion to answer generation.",
+    "What is HyDE and how does it improve retrieval quality compared to naive embedding search?",
+    "How do you handle documents that exceed the LLM's context window in a RAG system?",
+    "What metrics would you use to evaluate the quality of retrieval in your RAG pipeline?"
+  ]
+}

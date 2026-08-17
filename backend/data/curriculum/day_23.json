@@ -1,0 +1,24 @@
+{
+  "day": 23,
+  "title": "Transformer Architecture Deep Dive",
+  "topics": ["Attention mechanism", "Self-attention", "Multi-head attention", "Positional encoding", "Transformer blocks"],
+  "key_concepts": [
+    "Scaled dot-product attention: Q, K, V matrices",
+    "Multi-head attention: parallel attention heads",
+    "Positional encoding: absolute vs rotary (RoPE) vs ALiBi",
+    "Transformer block: attention + FFN + LayerNorm + residual connections",
+    "Causal masking in decoder-only models (GPT-style)"
+  ],
+  "expected_skills": [
+    "Explain the self-attention mechanism mathematically",
+    "Describe the role of each component in a transformer block",
+    "Explain why positional encoding is necessary",
+    "Describe how causal masking enables autoregressive generation"
+  ],
+  "sample_questions": [
+    "Explain the self-attention mechanism. How are Q, K, and V matrices computed and used?",
+    "Why do we scale the dot product by sqrt(d_k) in the attention formula?",
+    "What is the purpose of positional encoding and how does RoPE differ from sinusoidal encoding?",
+    "Explain how causal masking works in a decoder-only transformer model like GPT."
+  ]
+}

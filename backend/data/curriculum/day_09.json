@@ -1,0 +1,24 @@
+{
+  "day": 9,
+  "title": "Evaluation & Testing LLM Systems",
+  "topics": ["LLM evaluation", "RAGAS", "Human evaluation", "Unit testing prompts", "A/B testing"],
+  "key_concepts": [
+    "RAGAS metrics: faithfulness, answer relevancy, context precision, context recall",
+    "LLM-as-judge evaluation frameworks",
+    "Regression testing for prompt changes",
+    "Benchmark datasets (MMLU, HumanEval, HellaSwag)",
+    "Latency vs quality trade-offs in production"
+  ],
+  "expected_skills": [
+    "Evaluate a RAG pipeline using RAGAS metrics",
+    "Set up LLM-as-judge evaluation for open-ended responses",
+    "Write unit tests that are robust to LLM non-determinism",
+    "Track evaluation metrics over time to detect regressions"
+  ],
+  "sample_questions": [
+    "What is RAGAS and which metrics does it provide for evaluating RAG systems?",
+    "How would you use an LLM as a judge to evaluate the quality of another LLM's output?",
+    "What challenges arise when writing unit tests for LLM-based systems?",
+    "How would you set up A/B testing for two different prompt versions in production?"
+  ]
+}

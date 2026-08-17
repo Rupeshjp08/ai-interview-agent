@@ -1,0 +1,24 @@
+{
+  "day": 3,
+  "title": "Embeddings & Vector Databases",
+  "topics": ["Text embeddings", "Cosine similarity", "Vector databases", "Pinecone/Chroma", "Semantic search"],
+  "key_concepts": [
+    "What embeddings are and how they encode semantic meaning",
+    "Cosine similarity and dot product for vector comparison",
+    "HNSW and other approximate nearest neighbour (ANN) algorithms",
+    "Pinecone vs Chroma vs Weaviate vs Qdrant trade-offs",
+    "Chunking strategies for documents before embedding"
+  ],
+  "expected_skills": [
+    "Generate embeddings using OpenAI or Sentence Transformers",
+    "Store and query vectors in a Chroma or Pinecone database",
+    "Implement semantic search over a document corpus",
+    "Choose the right chunking strategy for a given use case"
+  ],
+  "sample_questions": [
+    "Explain what text embeddings are and how they capture semantic meaning.",
+    "How does cosine similarity work and why is it used for comparing embeddings?",
+    "What is HNSW and why do vector databases use approximate nearest neighbour algorithms?",
+    "How would you choose chunk size when embedding documents for a RAG system?"
+  ]
+}

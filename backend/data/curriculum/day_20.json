@@ -1,0 +1,24 @@
+{
+  "day": 20,
+  "title": "AI Agents & Tool Use",
+  "topics": ["ReAct agents", "Tool calling / function calling", "LangGraph", "Agent loops", "Planning strategies"],
+  "key_concepts": [
+    "ReAct (Reason + Act) framework",
+    "OpenAI function calling / Gemini tool use",
+    "LangGraph stateful graph agents",
+    "Tool definition: name, description, parameters",
+    "Human-in-the-loop patterns"
+  ],
+  "expected_skills": [
+    "Build a ReAct agent with custom tools",
+    "Define tools using the function-calling spec",
+    "Implement a multi-step LangGraph agent graph",
+    "Add human-in-the-loop approval to an agent workflow"
+  ],
+  "sample_questions": [
+    "Explain the ReAct framework and how an agent decides when to use a tool vs answer directly.",
+    "How do you define a tool for an LLM using the function-calling interface? What makes a good tool description?",
+    "What is LangGraph and how does it differ from a simple LangChain chain?",
+    "How would you prevent an agent from running in an infinite loop?"
+  ]
+}

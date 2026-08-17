@@ -1,0 +1,24 @@
+{
+  "day": 2,
+  "title": "Prompt Engineering Fundamentals",
+  "topics": ["Zero-shot prompting", "Few-shot prompting", "Chain-of-thought", "Prompt templates", "System vs user roles"],
+  "key_concepts": [
+    "Zero-shot vs few-shot prompting strategies",
+    "Chain-of-thought (CoT) reasoning",
+    "Role-based prompting (system, user, assistant)",
+    "Prompt injection and safety",
+    "Iterative prompt refinement"
+  ],
+  "expected_skills": [
+    "Write effective zero-shot and few-shot prompts",
+    "Apply CoT to improve model reasoning",
+    "Use system prompts to constrain model behaviour",
+    "Avoid common prompt injection vulnerabilities"
+  ],
+  "sample_questions": [
+    "What is the difference between zero-shot and few-shot prompting? When would you choose one over the other?",
+    "Explain chain-of-thought prompting and why it improves LLM performance on reasoning tasks.",
+    "How do system prompts differ from user prompts in the chat completion format?",
+    "What is prompt injection and how would you mitigate it in a production system?"
+  ]
+}

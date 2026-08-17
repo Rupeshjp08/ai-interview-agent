@@ -1,0 +1,24 @@
+{
+  "day": 21,
+  "title": "Vector Database Deep Dive",
+  "topics": ["Pinecone", "Weaviate", "Qdrant", "Index types", "Metadata filtering"],
+  "key_concepts": [
+    "Pinecone serverless vs pod-based deployments",
+    "Weaviate's hybrid search: combining dense and sparse vectors",
+    "Qdrant's payload-based filtering and collection management",
+    "HNSW vs IVF vs flat index trade-offs",
+    "Namespace/tenant isolation for multi-tenant RAG applications"
+  ],
+  "expected_skills": [
+    "Set up and query Pinecone, Chroma, and Qdrant",
+    "Implement hybrid search combining BM25 and dense embeddings",
+    "Apply metadata filters to narrow retrieval results",
+    "Design a multi-tenant vector database architecture"
+  ],
+  "sample_questions": [
+    "Compare Pinecone, Chroma, and Qdrant — what are the key trade-offs for a production RAG system?",
+    "What is hybrid search and how does combining BM25 with dense embeddings improve retrieval?",
+    "How would you implement namespace/tenant isolation in a vector database for a multi-tenant SaaS product?",
+    "Explain the trade-offs between HNSW and IVF indexes in terms of speed, memory, and recall."
+  ]
+}

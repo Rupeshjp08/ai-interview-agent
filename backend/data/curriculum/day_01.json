@@ -1,0 +1,23 @@
+{
+  "day": 1,
+  "title": "Introduction to AI & Large Language Models",
+  "topics": ["What is AI/ML", "LLM fundamentals", "Tokens & embeddings", "Prompt basics", "OpenAI API intro"],
+  "key_concepts": [
+    "Difference between AI, ML, and deep learning",
+    "How LLMs predict the next token",
+    "What are embeddings and vector spaces",
+    "Temperature and sampling parameters",
+    "API keys and rate limits"
+  ],
+  "expected_skills": [
+    "Call the OpenAI / Gemini API with a basic prompt",
+    "Explain what a token is",
+    "Describe the difference between GPT-3.5 and GPT-4"
+  ],
+  "sample_questions": [
+    "Can you explain in your own words how a large language model generates text?",
+    "What is a token and how does tokenization affect API cost?",
+    "What is the role of temperature in LLM inference and when would you use a low vs high value?",
+    "How are embeddings different from raw text, and why are they useful?"
+  ]
+}

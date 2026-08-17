@@ -1,0 +1,81 @@
+/* MessageBubble.module.css */
+
+.wrapper {
+  display: flex;
+  gap: 10px;
+  animation: msgIn 0.25s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.interviewerWrapper { align-items: flex-start; }
+.candidateWrapper   { align-items: flex-end; flex-direction: row-reverse; }
+
+/* Avatar */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(167,139,250,0.12);
+  border: 1px solid rgba(167,139,250,0.2);
+  font-size: 10px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+/* Bubble */
+.bubble {
+  max-width: 72%;
+  padding: 14px 18px;
+  border-radius: 16px;
+  position: relative;
+  line-height: 1.65;
+}
+
+.interviewerBubble {
+  background: rgba(167,139,250,0.08);
+  border: 1px solid rgba(167,139,250,0.15);
+  border-top-left-radius: 4px;
+}
+
+.candidateBubble {
+  background: rgba(56,189,248,0.08);
+  border: 1px solid rgba(56,189,248,0.15);
+  border-top-right-radius: 4px;
+}
+
+/* Sender label */
+.senderLabel {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #a78bfa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+/* Content */
+.content {
+  font-size: 14px;
+  color: #e2e8f0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Timestamp */
+.timestamp {
+  display: block;
+  font-size: 11px;
+  color: #475569;
+  margin-top: 6px;
+  text-align: right;
+}

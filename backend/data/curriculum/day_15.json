@@ -1,0 +1,24 @@
+{
+  "day": 15,
+  "title": "Retrieval-Augmented Generation (RAG)",
+  "topics": ["RAG architecture", "Document loaders", "Text splitters", "Vector stores", "Retrieval strategies"],
+  "key_concepts": [
+    "Why RAG beats naive context stuffing",
+    "Chunking strategies: fixed-size, recursive, semantic",
+    "Similarity search vs MMR retrieval",
+    "Embedding models: OpenAI ada-002, sentence-transformers",
+    "Chroma, Pinecone, Weaviate — comparison"
+  ],
+  "expected_skills": [
+    "Build an end-to-end RAG pipeline",
+    "Choose appropriate chunking strategies for different document types",
+    "Implement MMR to reduce redundant retrieved chunks",
+    "Evaluate RAG quality using RAGAS metrics"
+  ],
+  "sample_questions": [
+    "Explain the end-to-end flow of a RAG pipeline from document ingestion to answer generation.",
+    "What chunking strategy would you use for a 200-page PDF and why?",
+    "What is MMR retrieval and how does it differ from pure similarity search?",
+    "How would you evaluate the quality of a RAG system? What metrics would you use?"
+  ]
+}

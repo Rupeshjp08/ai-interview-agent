@@ -1,0 +1,24 @@
+{
+  "day": 24,
+  "title": "MLOps & Model Deployment",
+  "topics": ["Docker", "CI/CD for ML", "Model versioning", "Shadow deployment", "Canary releases"],
+  "key_concepts": [
+    "Containerising ML/AI applications with Docker and Docker Compose",
+    "CI/CD pipelines for ML: test → build → deploy",
+    "Model registry and versioning strategies",
+    "Shadow deployment: routing traffic to a new model without serving results",
+    "Canary releases: gradually shifting traffic to a new model version"
+  ],
+  "expected_skills": [
+    "Dockerise a FastAPI + LangChain application",
+    "Design a CI/CD pipeline for an LLM application",
+    "Implement a canary deployment strategy for model updates",
+    "Use a model registry to track and version ML artifacts"
+  ],
+  "sample_questions": [
+    "Walk me through how you would Dockerise a FastAPI-based AI application for production deployment.",
+    "What is a canary release in MLOps and how does it reduce risk when deploying a new model version?",
+    "How would you design a CI/CD pipeline for an LLM application that includes prompt evaluation?",
+    "What is shadow deployment and when would you use it instead of a canary release?"
+  ]
+}

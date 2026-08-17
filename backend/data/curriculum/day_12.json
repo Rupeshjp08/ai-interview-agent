@@ -1,0 +1,24 @@
+{
+  "day": 12,
+  "title": "LangGraph & Stateful Agents",
+  "topics": ["LangGraph", "State machines", "Nodes and edges", "Conditional routing", "Persistent state"],
+  "key_concepts": [
+    "LangGraph as a state machine for complex agent workflows",
+    "Nodes (processing steps) and edges (transitions) in a graph",
+    "State schema definition with TypedDict",
+    "Conditional edges for dynamic routing based on state",
+    "Human-in-the-loop interruption points"
+  ],
+  "expected_skills": [
+    "Build a multi-node LangGraph agent with conditional routing",
+    "Define a state schema and pass state between nodes",
+    "Implement human-in-the-loop checkpoints",
+    "Debug LangGraph execution with step-by-step tracing"
+  ],
+  "sample_questions": [
+    "What problem does LangGraph solve that LangChain chains cannot?",
+    "How do you define conditional routing in a LangGraph agent? Give a concrete example.",
+    "What is a state schema in LangGraph and why is TypedDict used for it?",
+    "How would you implement a human-in-the-loop review step in a LangGraph workflow?"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "day": 27,
+  "title": "Multimodal AI",
+  "topics": ["Vision language models", "Image understanding", "GPT-4V", "Gemini Vision", "Multi-modal RAG"],
+  "key_concepts": [
+    "Vision-Language Models (VLMs): GPT-4V, Gemini, LLaVA, Claude Vision",
+    "Image-to-text: captioning, OCR, chart understanding",
+    "Multi-modal embeddings: CLIP and its role in image-text search",
+    "Multi-modal RAG: combining image and text retrieval",
+    "Vision agent applications: document analysis, screenshot understanding"
+  ],
+  "expected_skills": [
+    "Call GPT-4V or Gemini Vision to analyse images",
+    "Build a multi-modal RAG pipeline combining text and image search",
+    "Use CLIP embeddings for image-text similarity search",
+    "Extract structured data from images using vision LLMs"
+  ],
+  "sample_questions": [
+    "How would you build a system that can answer questions about images alongside text documents?",
+    "What is CLIP and how does it enable image-text similarity search?",
+    "How would you extract structured data from a scanned invoice using a vision language model?",
+    "What are the main challenges of multi-modal RAG compared to text-only RAG?"
+  ]
+}

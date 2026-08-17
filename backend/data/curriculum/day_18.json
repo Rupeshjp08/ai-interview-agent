@@ -1,0 +1,24 @@
+{
+  "day": 18,
+  "title": "Document Q&A Systems",
+  "topics": ["Document loaders", "PDF parsing", "Table extraction", "Multi-modal documents", "Citation tracking"],
+  "key_concepts": [
+    "LangChain document loaders: PDF, Word, HTML, CSV, YouTube",
+    "Handling PDFs with complex layouts (tables, columns, images)",
+    "Citation and source attribution in Q&A answers",
+    "Multi-modal RAG: combining text and image understanding",
+    "Indexing strategies for large document collections"
+  ],
+  "expected_skills": [
+    "Build a document Q&A system with source citations",
+    "Parse complex PDFs with tables and mixed content",
+    "Handle multiple document formats in one RAG pipeline",
+    "Track which source documents contributed to an answer"
+  ],
+  "sample_questions": [
+    "How would you extract information from PDFs that have complex tables and multi-column layouts?",
+    "How do you add source citations to a RAG system's answers?",
+    "What challenges arise when building Q&A over a large document collection with thousands of files?",
+    "How would you handle multi-modal documents that contain both text and images in a RAG pipeline?"
+  ]
+}

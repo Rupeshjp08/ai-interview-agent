@@ -1,0 +1,24 @@
+{
+  "day": 22,
+  "title": "Observability & Monitoring",
+  "topics": ["LangSmith", "Tracing", "Logging", "Metrics", "Alerting"],
+  "key_concepts": [
+    "LangSmith tracing: capturing full LLM call chains",
+    "Key metrics: latency, token usage, cost, error rate",
+    "Structured logging for AI applications",
+    "Detecting degradation: drift in model output quality",
+    "Cost monitoring and budget alerts for API spending"
+  ],
+  "expected_skills": [
+    "Integrate LangSmith tracing into a LangChain application",
+    "Set up dashboards for AI application metrics",
+    "Implement structured logging for debugging LLM calls",
+    "Create alerts for error rate spikes and latency regressions"
+  ],
+  "sample_questions": [
+    "What is LangSmith and how does it help you debug a complex LangChain agent?",
+    "What metrics are most important to monitor for a production LLM application?",
+    "How would you detect that your model's output quality is degrading over time in production?",
+    "How would you track and control API costs for a high-volume LLM application?"
+  ]
+}

@@ -1,0 +1,104 @@
+/* InputBar.module.css */
+
+.container {
+  padding: 12px 16px 16px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.01);
+  flex-shrink: 0;
+}
+
+.inputWrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 8px 8px 8px 16px;
+  transition: border-color 200ms;
+}
+
+.inputWrap:focus-within {
+  border-color: rgba(167,139,250,0.4);
+  box-shadow: 0 0 0 3px rgba(167,139,250,0.08);
+}
+
+.textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 14px;
+  font-family: inherit;
+  color: #f1f5f9;
+  line-height: 1.6;
+  min-height: 24px;
+  max-height: 160px;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+
+.textarea::placeholder { color: #475569; }
+
+.sendBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 200ms ease;
+  background: rgba(255,255,255,0.05);
+  color: #475569;
+}
+
+.sendBtn.active {
+  background: linear-gradient(135deg, #a78bfa, #38bdf8);
+  color: #fff;
+}
+
+.sendBtn.active:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(167,139,250,0.4);
+}
+
+.sendBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Spinner inside send button */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hint {
+  font-size: 11px;
+  color: #334155;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Completed bar */
+.completedBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #34d399;
+  background: rgba(52,211,153,0.05);
+  border-top: 1px solid rgba(52,211,153,0.15);
+}
+
+.completedIcon { font-size: 20px; }

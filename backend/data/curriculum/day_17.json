@@ -1,0 +1,24 @@
+{
+  "day": 17,
+  "title": "Structured Output & JSON Mode",
+  "topics": ["JSON mode", "Function calling", "Pydantic output parsers", "TypedDict outputs", "Instructor library"],
+  "key_concepts": [
+    "OpenAI JSON mode vs function calling for structured output",
+    "Pydantic v2 model as LLM output schema",
+    "The Instructor library for reliable structured extraction",
+    "Retry strategies when structured parsing fails",
+    "Nested Pydantic models for complex structured data"
+  ],
+  "expected_skills": [
+    "Extract structured data from LLM output using Pydantic",
+    "Use JSON mode or function calling to guarantee output format",
+    "Handle parsing failures with retry and fallback logic",
+    "Use the Instructor library for type-safe LLM outputs"
+  ],
+  "sample_questions": [
+    "What is the difference between JSON mode and function calling for getting structured output from an LLM?",
+    "How would you use Pydantic to define the output schema for an LLM extraction task?",
+    "What happens when an LLM fails to produce valid JSON and how do you recover?",
+    "When would you use the Instructor library versus LangChain's PydanticOutputParser?"
+  ]
+}

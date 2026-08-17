@@ -1,0 +1,24 @@
+{
+  "day": 19,
+  "title": "AI Safety & Responsible AI",
+  "topics": ["Hallucinations", "Bias & fairness", "Content moderation", "Alignment", "Red-teaming"],
+  "key_concepts": [
+    "Types of hallucinations: factual errors, fabrications, inconsistencies",
+    "Bias in training data and how it propagates to model outputs",
+    "Content moderation with moderation APIs and classifiers",
+    "Alignment techniques: RLHF, Constitutional AI, DPO",
+    "Red-teaming: systematic adversarial testing of AI systems"
+  ],
+  "expected_skills": [
+    "Detect and mitigate hallucinations in RAG systems",
+    "Implement content moderation for user-generated inputs",
+    "Apply grounding techniques to reduce factual errors",
+    "Conduct basic red-teaming on an AI application"
+  ],
+  "sample_questions": [
+    "What are the main types of hallucinations in LLMs and how does RAG help mitigate them?",
+    "How would you implement content moderation to prevent your AI from generating harmful content?",
+    "What is RLHF and how does it help align LLMs with human preferences?",
+    "Explain what red-teaming is in the context of AI safety and give an example of a red-teaming scenario."
+  ]
+}

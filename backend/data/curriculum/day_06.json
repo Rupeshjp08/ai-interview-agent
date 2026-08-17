@@ -1,0 +1,24 @@
+{
+  "day": 6,
+  "title": "FastAPI for AI Applications",
+  "topics": ["FastAPI basics", "Async endpoints", "Pydantic validation", "OpenAPI docs", "Middleware"],
+  "key_concepts": [
+    "FastAPI request lifecycle and async/await patterns",
+    "Pydantic v2 models for request/response validation",
+    "Dependency injection with Depends()",
+    "Background tasks for fire-and-forget operations",
+    "CORS middleware configuration for frontend integration"
+  ],
+  "expected_skills": [
+    "Build a REST API with FastAPI for an LLM-backed service",
+    "Use Pydantic models for input validation and output shaping",
+    "Implement async endpoints that call external AI APIs",
+    "Add CORS, rate limiting, and authentication middleware"
+  ],
+  "sample_questions": [
+    "Why use FastAPI over Flask for an AI API service? What advantages does async bring?",
+    "How does Pydantic v2 validate request data and what happens when validation fails?",
+    "Explain how you would use FastAPI's BackgroundTasks for processing long-running AI jobs.",
+    "How would you add rate limiting to a FastAPI endpoint to prevent API abuse?"
+  ]
+}

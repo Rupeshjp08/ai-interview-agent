@@ -1,0 +1,24 @@
+{
+  "day": 30,
+  "title": "Interview Prep & Portfolio",
+  "topics": ["Technical interview skills", "STAR format", "System design", "Project walkthroughs", "Negotiation"],
+  "key_concepts": [
+    "STAR format for behavioural questions: Situation, Task, Action, Result",
+    "AI-specific technical interview topics and common question patterns",
+    "Whiteboarding AI/ML system design: structured approach",
+    "Presenting projects: architecture decisions, challenges, outcomes",
+    "Salary negotiation and offer evaluation for AI engineering roles"
+  ],
+  "expected_skills": [
+    "Deliver a STAR-format answer to a behavioural interview question",
+    "Walk through a project architecture clearly and concisely",
+    "Solve an AI system design interview question in 45 minutes",
+    "Negotiate compensation for an AI engineering role"
+  ],
+  "sample_questions": [
+    "Using the STAR format, describe a time you overcame a significant technical challenge in an AI project.",
+    "Walk me through the architecture of your Document Q&A Bot — what would you do differently now?",
+    "What salary range are you targeting and how did you arrive at that number?",
+    "How do you stay current with the rapidly evolving AI/ML landscape?"
+  ]
+}

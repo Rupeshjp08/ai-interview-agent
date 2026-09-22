@@ -73,6 +73,12 @@ class InterviewSession:
     # Topic associated with the current question
     current_topic: str | None = None
 
+    # Current difficulty level for question generation: beginner, intermediate, advanced
+    current_difficulty: str = "intermediate"
+
+    # Internal evaluation result from the latest answer evaluation
+    last_evaluation: dict[str, Any] | None = None
+
     # Interview completion state
     is_complete: bool = False
 
@@ -400,6 +406,22 @@ def get_interview_plan(
     }
 
 
+def set_difficulty(
+    session: InterviewSession,
+    difficulty: str,
+) -> None:
+    """
+    Set the current interview difficulty level.
+    Clamps input to one of: 'beginner', 'intermediate', 'advanced'.
+    """
+    valid_levels = {"beginner", "intermediate", "advanced"}
+    cleaned = str(difficulty).lower().strip()
+    if cleaned in valid_levels:
+        session.current_difficulty = cleaned
+    else:
+        session.current_difficulty = "intermediate"
+
+
 # ---------------------------------------------------------------------------
 # Debug / admin helpers
 # ---------------------------------------------------------------------------
@@ -424,6 +446,7 @@ def list_active_sessions() -> list[dict[str, Any]]:
                 session.current_curriculum_day
             ),
             "current_topic": session.current_topic,
+            "current_difficulty": session.current_difficulty,
             "is_complete": session.is_complete,
             "message_count": len(
                 session.conversation_history

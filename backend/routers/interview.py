@@ -42,6 +42,7 @@ from services.session_manager import (
     delete_session,
     get_or_create_session,
     get_session,
+    set_difficulty,
     set_interview_plan,
 )
 
@@ -137,12 +138,18 @@ async def conduct_interview(
             target_topics=plan.target_topics,
         )
 
+        set_difficulty(
+            session=session,
+            difficulty=candidate.get("interview_difficulty", "intermediate"),
+        )
+
         logger.info(
             "Created interview plan for session %s: "
-            "days=%s topics=%s",
+            "days=%s topics=%s difficulty=%s",
             session.session_id,
             plan.target_days,
             plan.target_topics,
+            session.current_difficulty,
         )
 
     # ------------------------------------------------------------------
@@ -173,6 +180,9 @@ async def conduct_interview(
                 ),
                 "current_topic": (
                     session.current_topic
+                ),
+                "current_difficulty": (
+                    session.current_difficulty
                 ),
                 "interview_plan": session.interview_plan,
             },
@@ -276,6 +286,9 @@ async def conduct_interview(
         ),
         "current_topic": (
             session.current_topic
+        ),
+        "current_difficulty": (
+            session.current_difficulty
         ),
         "interview_plan": (
             session.interview_plan

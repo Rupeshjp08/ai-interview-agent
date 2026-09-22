@@ -36,6 +36,11 @@ from google.api_core.exceptions import (
     ServiceUnavailable,
 )
 
+from services.answer_evaluator import (
+    apply_difficulty_adjustment,
+    evaluate_answer_gemini,
+    evaluate_answer_mock,
+)
 from services.interview_controller import (
     get_plan_from_session,
     get_target_for_question,
@@ -45,6 +50,7 @@ from services.session_manager import (
     can_complete,
     record_covered_topic,
     set_current_topic,
+    set_difficulty,
 )
 
 
@@ -63,139 +69,196 @@ MOCK_MODE = True
 # ============================================================
 # MOCK QUESTION BANK
 # ============================================================
-# Each topic maps to [Slot 0: Foundational / Design, Slot 1: Deeper / Trade-offs]
+# Each topic maps to difficulty levels:
+# {
+#    "beginner": [Slot 0, Slot 1],
+#    "intermediate": [Slot 0, Slot 1],  # Preserves existing stable baseline questions
+#    "advanced": [Slot 0, Slot 1]
+# }
 
-MOCK_TOPIC_QUESTIONS: dict[str, list[str]] = {
-    "memory": [
-        (
-            "How would you design conversation memory for "
-            "a multi-turn AI application?"
-        ),
-        (
-            "What challenges can arise when maintaining "
-            "conversation memory across multiple turns?"
-        ),
-    ],
-    "ai_ml": [
-        (
-            "Can you explain the fundamental differences between "
-            "traditional machine learning and modern large language models?"
-        ),
-        (
-            "How do tokenization and context window limits impact "
-            "the design of production LLM applications?"
-        ),
-    ],
-    "embedding": [
-        (
-            "How do text embeddings capture semantic meaning, "
-            "and how are vector representations generated?"
-        ),
-        (
-            "How would you evaluate whether an embedding model "
-            "is suitable for semantic retrieval and similarity search?"
-        ),
-    ],
-    "langchain": [
-        (
-            "How does LangChain architecture structure an LLM application "
-            "and orchestrate complex components?"
-        ),
-        (
-            "What are the main engineering challenges and trade-offs "
-            "when using LangChain abstractions in production?"
-        ),
-    ],
-    "rag": [
-        (
-            "How would you design an end-to-end Retrieval-Augmented Generation "
-            "(RAG) architecture for enterprise document search?"
-        ),
-        (
-            "What strategies would you implement to optimize chunking, "
-            "re-ranking, and retrieval precision in a RAG pipeline?"
-        ),
-    ],
-    "vector": [
-        (
-            "How do vector databases index and perform similarity search "
-            "over high-dimensional embeddings?"
-        ),
-        (
-            "What factors and trade-offs would you consider when choosing "
-            "an indexing strategy like HNSW versus IVF for a vector database?"
-        ),
-    ],
-    "langgraph": [
-        (
-            "How does LangGraph help manage state and graph execution "
-            "in multi-step AI workflows?"
-        ),
-        (
-            "How would you handle cyclic loops, checkpoint persistence, "
-            "and human-in-the-loop validation in a LangGraph agent?"
-        ),
-    ],
-    "prompt": [
-        (
-            "How do few-shot examples and chain-of-thought reasoning "
-            "improve LLM response quality?"
-        ),
-        (
-            "What techniques would you use to protect prompt templates "
-            "against prompt injection and jailbreak attacks?"
-        ),
-    ],
-    "agent": [
-        (
-            "How does the ReAct pattern enable AI agents to alternate "
-            "between reasoning and tool execution?"
-        ),
-        (
-            "How do you prevent infinite loops and handle tool execution "
-            "errors in multi-step agent workflows?"
-        ),
-    ],
-    "deployment": [
-        (
-            "What key architectural considerations are critical when "
-            "deploying LLM services to production?"
-        ),
-        (
-            "How would you design latency caching, rate-limiting, "
-            "and observability pipelines for production AI systems?"
-        ),
-    ],
-    "evaluation": [
-        (
-            "How would you design an evaluation framework to measure "
-            "the factual accuracy and groundedness of an LLM system?"
-        ),
-        (
-            "What metrics and synthetic dataset generation methods would "
-            "you use with frameworks like RAGAS in continuous integration?"
-        ),
-    ],
-    "transformer": [
-        (
-            "How does the scaled dot-product self-attention mechanism "
-            "operate within a Transformer architecture?"
-        ),
-        (
-            "What are the computational bottlenecks of multi-head attention "
-            "with long sequences, and how do modern optimizations address them?"
-        ),
-    ],
-    "finetuning": [
-        (
-            "What are the key differences between full fine-tuning "
-            "and Parameter-Efficient Fine-Tuning (PEFT) like LoRA?"
-        ),
-        (
-            "How do quantization and rank selection in QLoRA affect "
-            "memory footprint and downstream model accuracy?"
-        ),
-    ],
+MOCK_TOPIC_QUESTIONS: dict[str, dict[str, list[str]]] = {
+    "memory": {
+        "beginner": [
+            "What is the basic purpose of conversation memory in a chatbot or AI assistant?",
+            "What simple methods exist to pass chat context to an AI model?",
+        ],
+        "intermediate": [
+            "How would you design conversation memory for a multi-turn AI application?",
+            "What challenges can arise when maintaining conversation memory across multiple turns?",
+        ],
+        "advanced": [
+            "How would you architect a hybrid memory strategy combining summary, buffer, and vector persistence for long-running agents?",
+            "What strategies would you use to minimize latency and manage context window truncation in enterprise conversational memory?",
+        ],
+    },
+    "ai_ml": {
+        "beginner": [
+            "What is the difference between supervised learning and unsupervised learning?",
+            "What is an AI prompt and how does a language model process it?",
+        ],
+        "intermediate": [
+            "Can you explain the fundamental differences between traditional machine learning and modern large language models?",
+            "How do tokenization and context window limits impact the design of production LLM applications?",
+        ],
+        "advanced": [
+            "How do scaling laws and compute-optimal training affect modern LLM architectures?",
+            "What architectural innovations enable ultra-long context windows and efficient attention computation?",
+        ],
+    },
+    "embedding": {
+        "beginner": [
+            "What is a text embedding in simple terms?",
+            "Why are vector representations used to measure semantic similarity?",
+        ],
+        "intermediate": [
+            "How do text embeddings capture semantic meaning, and how are vector representations generated?",
+            "How would you evaluate whether an embedding model is suitable for semantic retrieval and similarity search?",
+        ],
+        "advanced": [
+            "How do cross-encoders differ from bi-encoders in embedding model architecture and retrieval speed?",
+            "How would you train or fine-tune custom embedding models for domain-specific vocabulary and code search?",
+        ],
+    },
+    "langchain": {
+        "beginner": [
+            "What is LangChain used for in AI development?",
+            "What is a Chain in LangChain and why is it useful?",
+        ],
+        "intermediate": [
+            "How does LangChain architecture structure an LLM application and orchestrate complex components?",
+            "What are the main engineering challenges and trade-offs when using LangChain abstractions in production?",
+        ],
+        "advanced": [
+            "How would you implement custom LCEL runnables with asynchronous streaming and fallback chains?",
+            "How do you inspect and eliminate abstraction overhead when scaling LangChain applications?",
+        ],
+    },
+    "rag": {
+        "beginner": [
+            "What does RAG stand for and what problem does it solve?",
+            "Why is document retrieval necessary when using LLMs for enterprise search?",
+        ],
+        "intermediate": [
+            "How would you design an end-to-end Retrieval-Augmented Generation (RAG) architecture for enterprise document search?",
+            "What strategies would you implement to optimize chunking, re-ranking, and retrieval precision in a RAG pipeline?",
+        ],
+        "advanced": [
+            "How would you architect a multi-stage RAG pipeline with hybrid search, metadata filtering, and adaptive re-ranking?",
+            "What techniques prevent hallucinations when generating answers over dense technical documentation?",
+        ],
+    },
+    "vector": {
+        "beginner": [
+            "What is a vector database?",
+            "How does vector search differ from traditional SQL keyword search?",
+        ],
+        "intermediate": [
+            "How do vector databases index and perform similarity search over high-dimensional embeddings?",
+            "What factors and trade-offs would you consider when choosing an indexing strategy like HNSW versus IVF for a vector database?",
+        ],
+        "advanced": [
+            "How do product quantization and scalar quantization compress high-dimensional vectors with minimal recall loss?",
+            "How would you optimize vector database indexing for real-time insert-heavy production workloads?",
+        ],
+    },
+    "langgraph": {
+        "beginner": [
+            "What is a state graph in agent orchestration?",
+            "Why use graph-based execution instead of linear chains for AI workflows?",
+        ],
+        "intermediate": [
+            "How does LangGraph help manage state and graph execution in multi-step AI workflows?",
+            "How would you handle cyclic loops, checkpoint persistence, and human-in-the-loop validation in a LangGraph agent?",
+        ],
+        "advanced": [
+            "How would you implement deterministic state rollbacks and time-travel debugging in complex LangGraph agents?",
+            "How do you coordinate distributed multi-agent communication networks using graph state channels?",
+        ],
+    },
+    "prompt": {
+        "beginner": [
+            "What is prompt engineering?",
+            "What is system prompt vs user prompt?",
+        ],
+        "intermediate": [
+            "How do few-shot examples and chain-of-thought reasoning improve LLM response quality?",
+            "What techniques would you use to protect prompt templates against prompt injection and jailbreak attacks?",
+        ],
+        "advanced": [
+            "How do automated prompt optimization techniques like DSPy generate optimal instructions systematically?",
+            "How would you design continuous prompt regression testing and adversarial jailbreak evaluation suites?",
+        ],
+    },
+    "agent": {
+        "beginner": [
+            "What is an AI agent?",
+            "How does an AI agent use external tools?",
+        ],
+        "intermediate": [
+            "How does the ReAct pattern enable AI agents to alternate between reasoning and tool execution?",
+            "How do you prevent infinite loops and handle tool execution errors in multi-step agent workflows?",
+        ],
+        "advanced": [
+            "How would you design parallel tool execution with structured schema validation for complex agents?",
+            "What fallback strategies maintain multi-agent system convergence when external tool APIs fail intermittently?",
+        ],
+    },
+    "deployment": {
+        "beginner": [
+            "What is MLOps?",
+            "Why is API rate limiting important when serving LLM models?",
+        ],
+        "intermediate": [
+            "What key architectural considerations are critical when deploying LLM services to production?",
+            "How would you design latency caching, rate-limiting, and observability pipelines for production AI systems?",
+        ],
+        "advanced": [
+            "How would you design continuous model deployment with semantic caching, request streaming, and GPU auto-scaling?",
+            "How do you manage distributed tracing and cost optimization for high-throughput LLM microservices?",
+        ],
+    },
+    "evaluation": {
+        "beginner": [
+            "Why is evaluating AI model responses important?",
+            "What is LLM-as-a-judge?",
+        ],
+        "intermediate": [
+            "How would you design an evaluation framework to measure the factual accuracy and groundedness of an LLM system?",
+            "What metrics and synthetic dataset generation methods would you use with frameworks like RAGAS in continuous integration?",
+        ],
+        "advanced": [
+            "How would you address judge bias and position preference in LLM-as-a-judge evaluation pipelines?",
+            "How do you build continuous online evaluation frameworks for live production user interactions?",
+        ],
+    },
+    "transformer": {
+        "beginner": [
+            "What is the Transformer architecture in modern AI?",
+            "What is self-attention in neural networks?",
+        ],
+        "intermediate": [
+            "How does the scaled dot-product self-attention mechanism operate within a Transformer architecture?",
+            "What are the computational bottlenecks of multi-head attention with long sequences, and how do modern optimizations address them?",
+        ],
+        "advanced": [
+            "How do FlashAttention kernel optimizations eliminate high-bandwidth memory bottlenecks in multi-head attention?",
+            "What is Rotary Position Embedding (RoPE) and how does it enable context length extrapolation?",
+        ],
+    },
+    "finetuning": {
+        "beginner": [
+            "What is fine-tuning in machine learning?",
+            "Why fine-tune a pre-trained model instead of training from scratch?",
+        ],
+        "intermediate": [
+            "What are the key differences between full fine-tuning and Parameter-Efficient Fine-Tuning (PEFT) like LoRA?",
+            "How do quantization and rank selection in QLoRA affect memory footprint and downstream model accuracy?",
+        ],
+        "advanced": [
+            "How does Direct Preference Optimization (DPO) compare to RLHF with PPO in aligning language models?",
+            "How would you structure distributed data-parallel training for multi-GPU fine-tuning of 70B parameter models?",
+        ],
+    },
 }
 
 
@@ -553,6 +616,7 @@ def _get_topic_fallback_question(
     session: InterviewSession,
     topic: str,
     slot_within_topic: int,
+    difficulty: str = "intermediate",
 ) -> str:
     """
     Generate a guaranteed topic-specific question.
@@ -560,19 +624,24 @@ def _get_topic_fallback_question(
     """
 
     normalized = _normalize_topic(topic)
+    diff_key = difficulty.lower().strip()
+    if diff_key not in {"beginner", "intermediate", "advanced"}:
+        diff_key = "intermediate"
 
     if normalized in MOCK_TOPIC_QUESTIONS:
-        questions = MOCK_TOPIC_QUESTIONS[normalized]
-        return questions[slot_within_topic % len(questions)]
+        topic_dict = MOCK_TOPIC_QUESTIONS[normalized]
+        questions = topic_dict.get(diff_key, topic_dict.get("intermediate", []))
+        if questions:
+            return questions[slot_within_topic % len(questions)]
 
     if slot_within_topic == 0:
         return (
-            f"How would you approach designing and implementing "
+            f"[{diff_key.capitalize()}] How would you approach designing and implementing "
             f"solutions based on {topic} in an AI engineering system?"
         )
     else:
         return (
-            f"What are the main engineering challenges, failure modes, "
+            f"[{diff_key.capitalize()}] What are the main engineering challenges, failure modes, "
             f"and performance trade-offs when implementing {topic} in production?"
         )
 
@@ -621,7 +690,7 @@ def _get_mock_question(
 ) -> str:
     """
     Generate a deterministic mock question based on
-    the current planned topic and the question slot within the topic.
+    the current planned topic, difficulty, and the question slot within the topic.
 
     Slot 0 (Q1, Q3, Q5, Q7): Foundational / design question.
     Slot 1 (Q2, Q4, Q6, Q8): Deeper engineering / trade-off question.
@@ -633,11 +702,13 @@ def _get_mock_question(
     )
 
     slot_within_topic = session.question_count % 2
+    difficulty = session.current_difficulty or "intermediate"
 
     return _get_topic_fallback_question(
         session,
         topic,
         slot_within_topic,
+        difficulty=difficulty,
     )
 
 
@@ -1047,17 +1118,19 @@ async def _generate_gemini_question(
     )
 
     topic_instruction = f"""
-## CURRENT INTERVIEW TOPIC
+## CURRENT INTERVIEW TOPIC & DIFFICULTY
 Topic: {current_topic} (Curriculum Day {current_day or 'N/A'})
+Target Difficulty Level: {(session.current_difficulty or 'intermediate').upper()}
 Question Slot: Question {question_num} / 8 (Question {slot_within_topic + 1} of 2 for this topic)
 
 ## STRICT TOPIC ENFORCEMENT
 1. You MUST generate exactly ONE technical interview question specifically and exclusively about: "{current_topic}".
-2. Do NOT switch topics. Do NOT ask about other curriculum days or unrelated technologies.
-3. Every generated question for this turn must remain strictly within "{current_topic}".
-4. Previously asked questions in this session:
+2. Target the complexity of the question to match the '{session.current_difficulty or "intermediate"}' difficulty level.
+3. Do NOT switch topics. Do NOT ask about other curriculum days or unrelated technologies.
+4. Every generated question for this turn must remain strictly within "{current_topic}".
+5. Previously asked questions in this session:
 {asked_list}
-5. NEVER repeat any question that has already been asked.
+6. NEVER repeat any question that has already been asked.
 
 ## DEPTH & STYLE
 {slot_guidance}
@@ -1079,7 +1152,7 @@ Question Slot: Question {question_num} / 8 (Question {slot_within_topic + 1} of 
             f"{topic_instruction}\n\n"
             f"Candidate's latest answer:\n{user_message or 'No message'}\n\n"
             f"Acknowledge the candidate's answer in at most one short, natural sentence, "
-            f"then ask Question {question_num} strictly focused on '{current_topic}'."
+            f"then ask Question {question_num} strictly focused on '{current_topic}' at {session.current_difficulty or 'intermediate'} difficulty."
         )
         history = list(session.conversation_history)
 
@@ -1099,6 +1172,7 @@ Question Slot: Question {question_num} / 8 (Question {slot_within_topic + 1} of 
                 session,
                 current_topic,
                 slot_within_topic,
+                difficulty=session.current_difficulty or "intermediate",
             )
 
         return message, is_complete, feedback
@@ -1112,6 +1186,7 @@ Question Slot: Question {question_num} / 8 (Question {slot_within_topic + 1} of 
             session,
             current_topic,
             slot_within_topic,
+            difficulty=session.current_difficulty or "intermediate",
         )
         return fallback_question, False, None
 
@@ -1254,9 +1329,11 @@ async def run_interview_turn(
 
     Deterministic Flow:
     1. Check if completion criteria are met (8 questions answered).
-    2. Assign target topic for the current question slot (question_count // 2).
-    3. Record topic coverage immediately.
-    4. Generate question (mock or Gemini) strictly for the assigned topic.
+    2. Evaluate previous answer (if user_message exists and question_count > 0).
+    3. Adjust difficulty dynamically based on evaluation.
+    4. Assign target topic for the current question slot (question_count // 2).
+    5. Record topic coverage immediately.
+    6. Generate question (mock or Gemini) strictly for the assigned topic and difficulty.
 
     Returns:
         (
@@ -1314,7 +1391,57 @@ async def run_interview_turn(
         )
 
     # --------------------------------------------------------
-    # 2. Assign next planned topic
+    # 2. Evaluate candidate's previous answer (after Q1)
+    # --------------------------------------------------------
+    if user_message and session.question_count > 0:
+        prev_topic = session.current_topic or "AI Engineering"
+        prev_difficulty = session.current_difficulty or "intermediate"
+
+        if MOCK_MODE:
+            eval_result = evaluate_answer_mock(
+                user_message=user_message,
+                current_topic=prev_topic,
+                current_difficulty=prev_difficulty,
+            )
+        else:
+            last_q = (
+                session.asked_questions[-1]
+                if session.asked_questions
+                else ""
+            )
+            eval_result = evaluate_answer_gemini(
+                user_message=user_message,
+                last_question=last_q,
+                current_topic=prev_topic,
+                current_difficulty=prev_difficulty,
+                call_gemini_func=lambda history, message: _call_with_retry(
+                    model_name=_MODEL_FALLBACK_ORDER[0],
+                    history=history,
+                    message=message,
+                ),
+            )
+
+        # Store internal evaluation metadata
+        session.last_evaluation = eval_result.to_dict()
+
+        # Adjust difficulty for upcoming question (carries across topics)
+        new_difficulty = apply_difficulty_adjustment(
+            current_difficulty=prev_difficulty,
+            adjustment=eval_result.difficulty_adjustment,
+        )
+        set_difficulty(session, new_difficulty)
+
+        logger.info(
+            "Session %s answer evaluated: quality=%d accuracy=%d adj=%s -> new difficulty=%s",
+            session.session_id,
+            eval_result.answer_quality,
+            eval_result.technical_accuracy,
+            eval_result.difficulty_adjustment,
+            session.current_difficulty,
+        )
+
+    # --------------------------------------------------------
+    # 3. Assign next planned topic
     # --------------------------------------------------------
     _assign_next_planned_topic(session)
     record_covered_topic(session)
@@ -1325,7 +1452,7 @@ async def run_interview_turn(
     question_num = session.question_count + 1
 
     # --------------------------------------------------------
-    # 3. Generate Question
+    # 4. Generate Question
     # --------------------------------------------------------
     if MOCK_MODE:
         question = _get_mock_question(session)
